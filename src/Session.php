@@ -3,11 +3,13 @@
 namespace SulacoTech\PSR7Sessions;
 
 use \SulacoTech\PSR7Sessions\SessionInterface;
+use \ArrayAccess;
+use \Countable;
 
 /**
  * Generic implementation of SessionInterface.
  */
-class Session implements SessionInterface {
+class Session implements SessionInterface, ArrayAccess, Countable {
 
 	private $sessionToken;
 	private $sessionData;
@@ -60,6 +62,13 @@ class Session implements SessionInterface {
 	/**
 	 * {@inheritdoc}
 	 */
+	public function has(string $name): bool {
+		return isset($this->sessionData[$name]);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public function all(): array {
 		return $this->sessionData;
 	}
@@ -76,5 +85,44 @@ class Session implements SessionInterface {
 	 */
 	public function isEmpty(): bool {
 		return count($this->sessionData) <= 0;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function offsetGet($offset) {
+		return $this->get($offset);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function offsetSet($offset, $value) {
+		if (is_null($offset)) {
+			$this->sessionData[] = $value;
+		} else {
+			$this->sessionData[$offset] = $value;
+		}
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function offsetUnset($offset) {
+		$this->remove($offset);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function offsetExists($offset) {
+		return $this->has($offset);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function count(): int {
+		return count($this->sessionData);
 	}
 }

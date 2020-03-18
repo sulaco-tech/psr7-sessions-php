@@ -17,9 +17,11 @@ $session = $sessionStorage->getSession();
 $token = $session->getAccessToken();
 $session->set('counter', 1);
 $session->set('counter', intval($session->get('counter')) + 1);
+$session['counter'] = $session['counter'] + 1;
 $sessionStorage->saveSession($session);
 
 $session = $sessionStorage->getSession($token);
 var_dump($session->get('counter'));
+var_dump($session['counter']);
 
 //$sessionStorage->removeSession($session);

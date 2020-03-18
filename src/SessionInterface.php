@@ -19,6 +19,7 @@ interface SessionInterface {
 	 *
 	 * @param string $name Name of entry.
 	 * @param mixed $value Default value.
+	 *
 	 * @return mixed If entry is exists, then returns it's value, elsewere returns a specified default value.
 	 */	
 	public function get(string $name, $value = null);
@@ -37,6 +38,15 @@ interface SessionInterface {
 	 * @param string $name Name of value.
 	 */
 	public function remove(string $name): void;
+
+	/**
+	 * Checks whether the session's data contains the given name.
+	 *
+	 * @param string $name Name of value.
+	 *
+	 * @return bool True is the given name is exists, otherwise - false.
+	 */
+	public function has(string $name): bool;
 
 	/**
 	 * Get all entries of the session's data and returns it as array.
