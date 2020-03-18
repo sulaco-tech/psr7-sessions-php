@@ -1,0 +1,23 @@
+{
+    "name": "sulaco-tech/psr7-sessions",
+    "type": "library",
+    "description": "Implementation of a PSR-7 and PSR-15 compatible middleware that enables sessions in PSR-7 based applications.",
+    "keywords": ["psr7", "session", "psr15"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bishop L.",
+            "email": "bishop@sulaco.space"
+        }
+	],
+    "require": {
+        "php": "^7.0",
+        "ext-json": "*",
+        "sulaco-tech/base58": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SulacoTech\\PSR7Sessions\\": "src/"
+        }
+    }
+}
