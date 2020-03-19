@@ -22,14 +22,26 @@ You can use the `SulacoTech\PSR7Sessions\SessionMiddleware` in any PSR-15 compat
 In a [`slim/slim`](https://github.com/slimphp/Slim) application, this would look like following:
 ```php
 use \Slim\Factory\AppFactory;
+use \Psr\Http\Message\ResponseInterface as Response;
+use \Psr\Http\Message\ServerRequestInterface as Request;
 use \SulacoTech\PSR7Sessions\SessionMiddleware;
 use \SulacoTech\PSR7Sessions\SessionFileStorage;
+use \SulacoTech\PSR7Sessions\SessionFileStorageConfiguration;
 
 // create application
 $app = AppFactory::create();
 
+// prepare configuration
+$sessionsDirectory = __DIR__ . '/../tmp/sessions';
+$sessionName = 'example';
+$sessionsExpirationTime = 300; // in seconds
+$config = new SessionFileStorageConfiguration($sessionsDirectory, $sessionName, $sessionsExpirationTime);
+
 // create storage with some configuration
 $sessionStorage = new SessionFileStorage($config);
+
+// call garbage collector
+$sessionStorage->gc();
 
 // create and add middleware
 $app->add(new SessionMiddleware($sessionStorage));
@@ -47,14 +59,13 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 	// make a response
     $response = $response
 		->withHeader('Content-Type', 'text/plain; charset=utf-8');
+	$response
 		->getBody()->write("Hello, {$args['name']}! This page is visited $num times.");
-
     return $response;
 });
 
 // run application
-$app->run();
-```
+$app->run();```
 
 ## License
 

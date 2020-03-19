@@ -37,10 +37,10 @@ class SessionMiddleware implements MiddlewareInterface {
 		$cookieName = $this->sessionStorage->getCookieName();
 		$sessionToken = $cookies[$cookieName] ?? null;
 
-		$session = $this->sessionStorage->getSession($sessionToken);
+		$session = $this->sessionStorage->load($sessionToken);
 		$request = $request->withAttribute(SessionMiddleware::SESSION_ATTRIBUTE, $session);
 		$response = $handler->handle($request);
-		$this->sessionStorage->saveSession($session);
+		$this->sessionStorage->save($session);
 
 		$actualSessionToken = $session->getAccessToken();
 		if ($sessionToken === null || $sessionToken !== $actualSessionToken) {

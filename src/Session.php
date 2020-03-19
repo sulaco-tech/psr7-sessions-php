@@ -98,11 +98,7 @@ class Session implements SessionInterface {
 	 * {@inheritdoc}
 	 */
 	public function offsetSet($offset, $value) {
-		if (is_null($offset)) {
-			$this->sessionData[] = $value;
-		} else {
-			$this->sessionData[$offset] = $value;
-		}
+		$this->set($offset, $value);
 	}
 
 	/**

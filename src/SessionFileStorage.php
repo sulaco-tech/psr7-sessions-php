@@ -94,11 +94,12 @@ class SessionFileStorage implements SessionStorageInterface {
 		$fileName = $this->getFileName($session->getAccessToken());
 		$sessionData = $session->all();
 
-		if (!@is_file($fileName) && $session->isEmpty()) {
+		if (!is_file($fileName) && $session->isEmpty()) {
 			return;
 		}
 
 		if (!$session->hasChanges()) {
+throw new \Exception("SESSION IS NOT CHANGED");
 			return;
 		}
 
