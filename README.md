@@ -57,11 +57,11 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 	$session['counter'] = ++ $num;
 
 	// make a response
-    $response = $response
+	$response = $response
 		->withHeader('Content-Type', 'text/plain; charset=utf-8');
 	$response
 		->getBody()->write("Hello, {$args['name']}! This page is visited $num times.");
-    return $response;
+	return $response;
 });
 
 // run application
