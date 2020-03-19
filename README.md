@@ -65,7 +65,8 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 });
 
 // run application
-$app->run();```
+$app->run();
+```
 
 ## License
 
