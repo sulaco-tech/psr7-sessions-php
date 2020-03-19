@@ -3,13 +3,13 @@
 namespace SulacoTech\PSR7Sessions;
 
 use \SulacoTech\PSR7Sessions\SessionInterface;
-use \ArrayAccess;
-use \Countable;
+use \Traversable;
+use \ArrayIterator;
 
 /**
  * Generic implementation of SessionInterface.
  */
-class Session implements SessionInterface, ArrayAccess, Countable {
+class Session implements SessionInterface {
 
 	private $sessionToken;
 	private $sessionData;
@@ -124,5 +124,12 @@ class Session implements SessionInterface, ArrayAccess, Countable {
 	 */
 	public function count(): int {
 		return count($this->sessionData);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getIterator(): Traversable {
+		return new ArrayIterator($this->sessionData);
 	}
 }

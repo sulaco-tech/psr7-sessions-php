@@ -12,16 +12,20 @@ $config = new SessionFileStorageConfiguration($sessionsDirectory, $sessionName, 
 
 $sessionStorage = new SessionFileStorage($config);
 $sessionStorage->gc();
-$session = $sessionStorage->getSession();
+$session = $sessionStorage->load();
 
 $token = $session->getAccessToken();
 $session->set('counter', 1);
 $session->set('counter', intval($session->get('counter')) + 1);
 $session['counter'] = $session['counter'] + 1;
-$sessionStorage->saveSession($session);
+foreach ($session as $name => $value) {
+	var_dump($name);
+	var_dump($value);
+}
+$sessionStorage->save($session);
 
-$session = $sessionStorage->getSession($token);
+$session = $sessionStorage->load($token);
 var_dump($session->get('counter'));
 var_dump($session['counter']);
 
-//$sessionStorage->removeSession($session);
+$sessionStorage->remove($session);

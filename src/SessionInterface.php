@@ -2,10 +2,14 @@
 
 namespace SulacoTech\PSR7Sessions;
 
+use \ArrayAccess;
+use \Countable;
+use \IteratorAggregate;
+
 /**
  * Describe the interface for access to session's data.
  */
-interface SessionInterface {
+interface SessionInterface extends ArrayAccess, Countable, IteratorAggregate {
 
 	/**
 	 * Get token to save it on client's side.

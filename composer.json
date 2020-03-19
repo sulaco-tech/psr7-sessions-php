@@ -13,6 +13,7 @@
     "require": {
         "php": "^7.0",
         "ext-json": "*",
+        "ext-pcre": "*",
         "sulaco-tech/base58": "^1.0"
     },
     "autoload": {

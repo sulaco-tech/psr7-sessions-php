@@ -17,27 +17,27 @@ interface SessionStorageInterface {
 	public function getCookieName(): string;
 
 	/**
-	 * Get SessionInterface using name of session and access token from client's side.
+	 * Load session's data from the storage using access token.
 	 *
 	 * @param string $accessToken Access token (pass null to generate new token).
 	 *
 	 * @return \SulacoTech\PSR7Sessions\SessionInterface Returns instance of implementation of SessionInterface.
 	 */
-	public function getSession(string $accessToken = null): SessionInterface;
+	public function load(string $accessToken = null): SessionInterface;
 
 	/**
-	 * Save session's data from SessionInterface into storage.
+	 * Save session's data into the storage.
 	 *
 	 * @param \SulacoTech\PSR7Sessions\SessionInterface $session Instance of implementation of SessionInterface.
 	 */
-	public function saveSession(SessionInterface $session): void;
+	public function save(SessionInterface $session): void;
 
 	/**
-	 * Remove session from storage.
+	 * Remove session from the storage.
 	 *
 	 * @param \SulacoTech\PSR7Sessions\SessionInterface $session Instance of implementation of SessionInterface.
 	 */
-	public function removeSession(SessionInterface $session): void;
+	public function remove(SessionInterface $session): void;
 	
 	/**
 	 * Remove expired sessions.

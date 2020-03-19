@@ -51,7 +51,7 @@ class SessionFileStorage implements SessionStorageInterface {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getSession(string $accessToken = null): SessionInterface {
+	public function load(string $accessToken = null): SessionInterface {
 
 		$sessionFactory = $this->configuration->getSessionFactory();
 		$tokenFactory = $this->configuration->getTokenFactory();
@@ -89,7 +89,7 @@ class SessionFileStorage implements SessionStorageInterface {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function saveSession(SessionInterface $session): void {
+	public function save(SessionInterface $session): void {
 
 		$fileName = $this->getFileName($session->getAccessToken());
 		$sessionData = $session->all();
@@ -121,7 +121,7 @@ class SessionFileStorage implements SessionStorageInterface {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function removeSession(SessionInterface $session): void {
+	public function remove(SessionInterface $session): void {
 
 		$fileName = $this->getFileName($session->getAccessToken());
 
