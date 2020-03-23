@@ -2,6 +2,14 @@
 
 Implementation of a PSR-7 and PSR-15 compatible middleware that enables sessions in PSR-7 based applications.
 
+## Install
+
+Install with [composer](https://getcomposer.org/).
+
+``` bash
+$ composer require sulaco-tech/psr7-sessions
+```
+
 ## Requirements
 
 This branch requires PHP 7.0 or up with built-in extensions:
