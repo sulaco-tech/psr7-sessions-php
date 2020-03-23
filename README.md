@@ -49,11 +49,15 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 	$session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
 
 	// read and update session's data
-	$num = $session->get('counter', 0);
-	$session['counter'] = ++ $num;
+	$counter = $session->get('counter', 0);
+	$session->set('counter', ++ $counter);
+
+	// same instructions using array access style
+	//$counter = $session['counter'] ?? 0;
+	//$session['counter'] = ++ $counter;
 
 	// make a response
-	$response->getBody()->write("Hello, {$args['name']}! This page is visited $num times.");
+	$response->getBody()->write("Hello, {$args['name']}! This page is visited $counter times.");
 
 	return $response;
 });
