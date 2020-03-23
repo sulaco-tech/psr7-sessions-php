@@ -33,13 +33,6 @@ interface SessionStorageInterface {
 	public function save(SessionInterface $session): void;
 
 	/**
-	 * Remove session from the storage.
-	 *
-	 * @param \SulacoTech\PSR7Sessions\SessionInterface $session Instance of implementation of SessionInterface.
-	 */
-	public function remove(SessionInterface $session): void;
-	
-	/**
 	 * Remove expired sessions.
 	 */
 	public function gc(): void;

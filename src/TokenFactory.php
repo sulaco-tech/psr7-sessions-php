@@ -5,8 +5,8 @@ namespace SulacoTech\PSR7Sessions;
 use \SulacoTech\PSR7Sessions\TokenFactoryInterface;
 use \SulacoTech\Base58;
 
-use function openssl_random_pseudo_bytes;
-use function preg_match;
+use function \openssl_random_pseudo_bytes;
+use function \preg_match;
 
 /**
  * Generic implementation of interface TokenFactoryInterface.

@@ -8,8 +8,8 @@ use \SulacoTech\PSR7Sessions\SessionFactory;
 use \SulacoTech\PSR7Sessions\TokenFactory;
 use \InvalidArgumentException;
 
-use function sprintf;
-use function is_dir;
+use function \sprintf;
+use function \is_dir;
 
 /**
  * Class represents configuration for class SessionFileStorage.

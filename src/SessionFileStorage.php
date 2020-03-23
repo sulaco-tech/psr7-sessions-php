@@ -11,17 +11,17 @@ use \SulacoTech\PSR7Sessions\SessionFileStorageConfiguration;
 use \RuntimeException;
 use \InvalidArgumentException;
 
-use function sprintf;
-use function file_get_contents;
-use function file_put_contents;
-use function json_decode;
-use function json_encode;
-use function stat;
-use function is_file;
-use function is_dir;
-use function is_array;
-use function time;
-use function preg_match;
+use function \sprintf;
+use function \file_get_contents;
+use function \file_put_contents;
+use function \json_decode;
+use function \json_encode;
+use function \stat;
+use function \is_file;
+use function \is_dir;
+use function \is_array;
+use function \time;
+use function \preg_match;
 
 /**
  * Simple file storage implementation.
@@ -99,7 +99,6 @@ class SessionFileStorage implements SessionStorageInterface {
 		}
 
 		if (!$session->hasChanges()) {
-throw new \Exception("SESSION IS NOT CHANGED");
 			return;
 		}
 
@@ -119,18 +118,6 @@ throw new \Exception("SESSION IS NOT CHANGED");
 		}
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function remove(SessionInterface $session): void {
-
-		$fileName = $this->getFileName($session->getAccessToken());
-
-		if (is_file($fileName)) {
-			unlink($fileName);
-		}
-	}
-	
 	/**
 	 * {@inheritdoc}
 	 */

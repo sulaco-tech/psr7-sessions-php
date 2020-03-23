@@ -11,10 +11,6 @@ This branch requires PHP 7.0 or up with built-in extensions:
 Followed packages are required too:
 - [`sulaco-tech/base58`](https://github.com/sulaco-tech/base58-php)
 
-## Status
-
-This code is NOT fully tested. The first release coming soon. Please wait.
-
 ## Usage
 
 You can use the `SulacoTech\PSR7Sessions\SessionMiddleware` in any PSR-15 compatible middleware.
@@ -57,10 +53,8 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 	$session['counter'] = ++ $num;
 
 	// make a response
-	$response = $response
-		->withHeader('Content-Type', 'text/plain; charset=utf-8');
-	$response
-		->getBody()->write("Hello, {$args['name']}! This page is visited $num times.");
+	$response->getBody()->write("Hello, {$args['name']}! This page is visited $num times.");
+
 	return $response;
 });
 
@@ -70,4 +64,4 @@ $app->run();
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.

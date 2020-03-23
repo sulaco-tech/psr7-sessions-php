@@ -24,6 +24,7 @@ class SessionMiddleware implements MiddlewareInterface {
 	 * @param SessionManagerInterface $sessionManager Instance of implementation of SessionManagerInterface.
 	 */	
 	public function __construct(SessionStorageInterface $sessionStorage) {
+
 		$this->sessionStorage = $sessionStorage;
 	}
 
